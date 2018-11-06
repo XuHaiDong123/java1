@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.OrdersDao">
+    <select id="findAll" resultMap="resultMap">
+        select * from orders
+    </select>
+    <resultMap id="resultMap" type="orders">
+        <id property="id" column="id"/>
+        <result property="id" column="id"/>
+        <result property="orderNum" column="orderNum"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <result property="payType" column="payType"/>
+        <result property="orderDesc" column="orderDesc"/>
+        <association property="product" column="productId" javaType="product"
+                     select="com.itheima.dao.ProductDao.findProductById" fetchType="lazy"/>
+    </resultMap>
+</mapper>
